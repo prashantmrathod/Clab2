@@ -1,18 +1,14 @@
-import java.util.List;  // Import the List class
-
 public class AltVehicleService {
-
     private IVehicleInspector inspector;
 
-    public AltVehicleService(String viProperty) {
-        // Use the VehicleFactory to get the appropriate inspector
-        this.inspector = VehicleFactory.getVehicleInspector(viProperty);
+    public AltVehicleService(String viType) {
+        // Use VehicleFactory to dynamically create the appropriate inspector
+        this.inspector = VehicleFactory.getVehicleInspector(viType);
     }
-
-    public float calculateTotal(List<IVehicle> vehicles) {
-        float total = 0;
+    public int calculateTotal(IVehicle[] vehicles) {
+        int total = 0;
         for (IVehicle vehicle : vehicles) {
-            total += vehicle.accept(inspector);
+            total += vehicle.accept(inspector); // Use the dynamically created inspector
         }
         return total;
     }

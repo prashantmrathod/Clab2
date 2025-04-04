@@ -6,20 +6,30 @@ public class Van implements IVehicle {
         this.storageCapacity = storageCapacity;
         this.numberOfDoors = numberOfDoors;
     }
-    public int getStorageCapacity() {
-        return storageCapacity;
-    }
-    public void setStorageCapacity(int storageCapacity) {
-        this.storageCapacity = storageCapacity;
-    }
-    public int getNumberOfDoors() {
-        return numberOfDoors;
-    }
-    public void setNumberOfDoors(int numberOfDoors) {
-        this.numberOfDoors = numberOfDoors;
-    }
+
     @Override
-    public int accept(IVehicleInspector vehicleInspector) {
-        return vehicleInspector.visit(this);
+    public int accept(IVehicleInspector inspector) {
+        return inspector.visit(this);
+    }
+
+    @Override
+    public float co2Emissions() {
+        // Formula: 8887 * (1 + (0.1 * (numberOfDoors - 2)))
+        return 8887 * (1 + (0.1f * (numberOfDoors - 2)));
+    }
+
+    @Override
+    public int getNumberOfDoors() {
+        return 0;
+    }
+
+    @Override
+    public int getEngineCapacity() {
+        return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Van{storageCapacity=" + storageCapacity + ", numberOfDoors=" + numberOfDoors + "}";
     }
 }

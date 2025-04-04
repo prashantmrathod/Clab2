@@ -1,6 +1,8 @@
 public interface IVehicle {
-    // Every vehicle that has gone under a full service
-    // is supposed to let the Vehicle Inspector to calculate
-    // the total Service Charge.
-    int accept(IVehicleInspector vehicleInspector);
+    int accept(IVehicleInspector inspector);
+    float co2Emissions(); // New method for calculating CO2 emissions
+
+    int getNumberOfDoors();
+
+    int getEngineCapacity();
 }

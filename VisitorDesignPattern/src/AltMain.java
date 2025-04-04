@@ -1,12 +1,22 @@
-// AltMain.java
+import java.util.ArrayList;
+import java.util.List;
+
 public class AltMain {
     public static void main(String[] args) {
-        // Read the system property "vi"
-        String viProperty = System.getProperty("vi");
 
-        // Create AltVehicleService, passing in the property
-        AltVehicleService service = new AltVehicleService(viProperty);
+        String vi = System.getProperty("vi");
 
-        // ... rest of your AltMain code ...
+        System.out.println("System property 'vi': " + vi);
+
+        if (vi == null || vi.isEmpty()) {
+            System.out.println("No 'vi' system property provided. Defaulting to VehicleInspection.");
+            vi = "default"; // Default value for 'vi'
+        }
+
+        AltVehicleService service = new AltVehicleService(vi);
+
+        List<IVehicle> vehicles = new ArrayList<>();
+        int totalCost = service.calculateTotal(vehicles.toArray(new IVehicle[0]));
+        System.out.println("Total Service Charge: $" + totalCost);
     }
 }
